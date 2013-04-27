@@ -5,6 +5,8 @@ This example shows one way to load jQuery and jQuery plugins with require.js. In
 
 In this example, we set the *path* of jQuery to point to a google-hosted CDN. That can benefit users, who might already have the file in their browser cache, and therefore don't have to download it again.
 
+Please note that in order to be able to load an asset from a CDN in the built files, all the plugins that needs that asset as a dependency have to call `define()`.
+
 ###Project structure 
 
 - tools/
