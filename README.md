@@ -1,9 +1,9 @@
-Example of using jQuery and require.js with a shim config.
+Example of using require.js to load jQuery from a CDN, and how to optimize that with r.js
 ====
 
-This example shows one way to load jQuery and jQuery plugins with require.js.  jQuery itself registers as an AMD module and can easily be loaded. Most plugins, however, does not register as AMD modules, and therefore, require.js doesn't know that the plugins need jQuery to be loaded. 
+This example shows one way to load jQuery and jQuery plugins with require.js. In this example, we have modified the plugins to be wrapped in a `define()`, rather than using the [shim configuration](http://requirejs.org/docs/api.html#config-shim). If you'd like to see how to load jQuery plugins that do not call define, without modifying the source, see the [example with shim config](http://github.com/requirejs/example-jquery-shim/)
 
-The most important part is the app.js file, which specifies the [shim configuration](http://requirejs.org/docs/api.html#config-shim) for the plugins. 
+In this example, we set the *path* of jQuery to point to a google-hosted CDN. That can benefit users, who might already have the file in their browser cache, and therefore don't have to download it again.
 
 ###Project structure 
 
@@ -16,7 +16,6 @@ The most important part is the app.js file, which specifies the [shim configurat
     - js/
       - app.js
       - lib/
-        - jquery.js
         - jquery.alpha.js
         - jquery.beta.js
         - require.js
@@ -29,17 +28,14 @@ The main file of this setup is www/js/app.js. It is loaded from app.html by this
 <script data-main="js/app" src="js/lib/require.js"></script>
 ```
 
-App.js is mainly about configuration. The shim configuration specifies jQuery as a dependency for jQuery.alpha and jQUery.beta. Finally, our main code is loaded at the bottom of the file:
+App.js is mainly about path configuration. We point out the special paths to our app code, and to the google CDN for jQuery. Finally, our main code is loaded at the bottom of the file:
 
 ```javascript
 requirejs.config({
     "baseUrl": "js/lib",
     "paths": {
-      "app": "../app"
-    },
-    "shim": {
-        "jquery.alpha": ["jquery"],
-        "jquery.beta": ["jquery"]
+      "app": "../app",
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
     }
 });
 
@@ -67,3 +63,4 @@ To use the optimizer, you need [node.js](http://nodejs.org) or Java 6 installed.
  
 r.js and a build configuration is included in the tools/ folder. To build, navigate to tools/ and type `node r.js -o build.js`. You will find the built product in the www-build folder. If you serve that directory instead, you can see in the network panel of the web developer tools that the files aren't loaded separately any more.
 
+Because jQuery is loaded from a network path, r.js will automatically exclude jQuery from the built product, and keep loading it from the CDN.

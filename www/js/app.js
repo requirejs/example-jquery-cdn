@@ -5,11 +5,8 @@
 requirejs.config({
     "baseUrl": "js/lib",
     "paths": {
-      "app": "../app"
-    },
-    "shim": {
-        "jquery.alpha": ["jquery"],
-        "jquery.beta": ["jquery"]
+      "app": "../app",
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min"
     }
 });
 
