@@ -7,22 +7,24 @@ In this example, we set the *path* of jQuery to point to a google-hosted CDN. Th
 
 Please note that in order to be able to load an asset from a CDN in the built files, all the plugins that needs that asset as a dependency have to call `define()`.
 
-###Project structure 
+###Project structure
 
-- tools/
-    - build.js
-    - r.js
+tools/
 
-- www/
-    - app.html
-    - js/
-      - app.js
-      - lib/
-        - jquery.alpha.js
-        - jquery.beta.js
-        - require.js
-      - app/
-        - main.js
+- build.js
+- r.js
+
+www/app.html
+
+www/js/
+
+- app.js
+- lib/
+    - jquery.alpha.js
+    - jquery.beta.js
+    - require.js
+- app/
+    - main.js
 
 ###How it's set up
 The main file of this setup is www/js/app.js. It is loaded from app.html by this line:
@@ -58,11 +60,11 @@ define(["jquery", "jquery.alpha", "jquery.beta"], function($) {
 
 ###How to see it in action
 
-Just serve up the www/ folder using any web server you'd like. If you have python installed, an easy way is to navigate into the www/ directory and type `python -m SimpleHTTPServer`
+Just serve up the www/ folder using any web server you'd like.
 
 ###How to optimize ut using r.js
 To use the optimizer, you need [node.js](http://nodejs.org) or Java 6 installed. These instructions assume Node is being used. See the [Optimization page](http://requirejs.org/docs/optimization.html) for more information.
- 
+
 r.js and a build configuration is included in the tools/ folder. To build, navigate to tools/ and type `node r.js -o build.js`. You will find the built product in the www-build folder. If you serve that directory instead, you can see in the network panel of the web developer tools that the files aren't loaded separately any more.
 
 Because jQuery is loaded from a network path, r.js will automatically exclude jQuery from the built product, and keep loading it from the CDN.
