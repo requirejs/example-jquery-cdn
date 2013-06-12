@@ -11,7 +11,7 @@
 
     "modules": [
         //Optimize the application files. jQuery is not 
-        //included since it is already in require-jquery.js
+        //included since it is listed as a network path in the main config file
         {
             "name": "app"
         }
