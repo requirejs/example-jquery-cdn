@@ -7,7 +7,7 @@ In this example, we set the *path* of jQuery to point to a google-hosted CDN. Th
 
 Please note that in order to be able to load an asset from a CDN in the built files, all the plugins that needs that asset as a dependency have to call `define()`.
 
-**If you want IE6-8 support**, clone this repo, but replace the jQuery file with a jQuery 1.9 release. The jQuery 2 used in this project does not work with those browsers, a 1.9 release is needed.
+**If you want IE6-8 support**, clone this repo, but replace the jQuery file with a jQuery 1.X release. The jQuery 2 used in this project does not work with those browsers, a 1.X release is needed. Modify the jQuery path in [app.js](https://github.com/requirejs/example-jquery-cdn/blob/master/www/js/app.js#L9), to for example `//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min`
 
 ###Project structure
 
